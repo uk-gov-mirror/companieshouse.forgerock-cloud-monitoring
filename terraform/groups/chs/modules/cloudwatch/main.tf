@@ -74,11 +74,23 @@ resource "aws_iam_policy" "canary_role" {
           "logs:CreateLogStream",
           "logs:PutLogEvents",
           "logs:CreateLogGroup",
-          "s3:ListAllMyBuckets",
-          "cloudwatch:PutMetricData",
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "arn:aws:logs:::*"
+      },
+      {
+        Action = [
+          "s3:ListAllMyBuckets",
+        ]
+        Effect = "Allow"
+        Resource = "arn:aws:s3:::"
+      },
+      {
+        Action = [
+          "cloudwatch:PutMetricData",
+        ]
+        Effect = "Allow"
+        Resource = "arn:aws:cloudwatch:::"
       },
 
     ]
