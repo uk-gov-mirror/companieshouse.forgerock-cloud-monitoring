@@ -15,6 +15,8 @@ data "aws_subnet_ids" "subnets" {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 ###
 # Modules
 ###
