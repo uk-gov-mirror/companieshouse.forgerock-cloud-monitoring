@@ -2,6 +2,8 @@ locals {
     service_arn = "arn:aws:ecs:"
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_role" "execution_role" {
     name = "restart_ecs_service_${var.ecs_service_name}"
 
