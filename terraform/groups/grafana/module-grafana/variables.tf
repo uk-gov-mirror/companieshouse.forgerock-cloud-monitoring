@@ -153,6 +153,11 @@ variable "ssh_keyname" {
   type        = string
 }
 
+variable "ssl_policy" {
+  description = "The SSL policy version to be used on the ALB"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "The ids of the subnets into which we'll place instances"
   type        = list(string)
