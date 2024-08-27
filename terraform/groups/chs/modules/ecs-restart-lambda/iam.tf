@@ -50,6 +50,7 @@ resource "aws_lambda_permission" "eventbridge" {
     function_name = aws_lambda_function.restart_function.function_name
     principal = "events.amazonaws.com"
     qualifier = aws_lambda_alias.alias.name
+    source_account = data.aws_caller_identity.current.id
 }
 
 resource "aws_lambda_alias" "alias" {
