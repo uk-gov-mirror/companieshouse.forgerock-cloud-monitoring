@@ -40,6 +40,7 @@ module "grafana" {
   service                       = var.service
   ssh_cidrs                     = local.administration_cidrs
   ssh_keyname                   = local.ssh_keyname
+  ssl_policy                   = var.ssl_policy
   subnet_ids                    = local.placement_subnet_ids_by_availability_zone
   user_data_merge_strategy      = var.user_data_merge_strategy
   vpc_id                        = data.aws_vpc.vpc.id

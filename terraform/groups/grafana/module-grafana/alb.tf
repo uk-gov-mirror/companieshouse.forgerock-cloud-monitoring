@@ -58,6 +58,7 @@ resource "aws_lb_listener" "grafana" {
   port              = 443
   protocol          = "HTTPS"
   certificate_arn   = local.certificate_arn
+  ssl_policy        = var.ssl_policy
 
   default_action {
     type             = "forward"

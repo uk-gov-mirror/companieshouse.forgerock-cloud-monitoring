@@ -93,6 +93,12 @@ variable "service" {
   type        = string
 }
 
+variable "ssl_policy" {
+  default     = "ELBSecurityPolicy-TLS13-1-0-2021-06"
+  description = "The SSL policy version to be used on the ALB"
+  type        = string
+}
+
 variable "team" {
   description = "The team responsible for administering the instance"
   type        = string
