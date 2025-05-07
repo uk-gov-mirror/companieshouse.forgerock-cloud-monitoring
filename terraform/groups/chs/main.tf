@@ -7,8 +7,12 @@ data "aws_vpc" "vpc" {
   }
 }
 
-data "aws_subnet_ids" "subnets" {
-  vpc_id = data.aws_vpc.vpc.id
+data "aws_subnets" "data_subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.vpc.id]
+  }
+
   filter {
     name   = "tag:Name"
     values = ["*-applications-*"]
@@ -46,7 +50,7 @@ module "idm_logging" {
   depends_on                 = [module.cloudwatch]
   region                     = var.region
   task_name                  = "idm_logging"
-  subnet_ids                 = data.aws_subnet_ids.subnets.ids
+  subnet_ids                 = data.aws_subnets.data_subnets.ids
   ecs_cluster_id             = module.ecs.cluster_id
   ecs_task_role_arn          = module.ecs.task_role_arn
   ecs_task_security_group_id = module.ecs.task_security_group_id
@@ -70,7 +74,7 @@ module "am_logging" {
   depends_on                 = [module.cloudwatch]
   region                     = var.region
   task_name                  = "am_logging"
-  subnet_ids                 = data.aws_subnet_ids.subnets.ids
+  subnet_ids                 = data.aws_subnets.data_subnets.ids
   ecs_cluster_id             = module.ecs.cluster_id
   ecs_task_role_arn          = module.ecs.task_role_arn
   ecs_task_security_group_id = module.ecs.task_security_group_id
