@@ -43,4 +43,9 @@ resource "aws_instance" "grafana" {
     Name        = "${var.service}-${var.environment}-grafana-${count.index + 1}"
     Service     = var.service
   }
+
+  metadata_options {
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 2
+  }
 }
